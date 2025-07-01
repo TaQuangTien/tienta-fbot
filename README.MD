@@ -34,10 +34,10 @@ docker run --restart=on-failure -d --name tienta-fbot -p 3000:3000 -e ADMIN_USER
 
 5.  Các biến môi trường cần lưu ý:
 ```cli
-ADMIN\_USERNAME=admin // Tên đăng nhập trang chủ.
-ADMIN\_PASSWORD=admin // Mật khẩu đăng nhập trang chủ.
-X\_API\_KEY=your-secret-api-key // Header x-api-key để xác thực các Request tới API.
-SELF\_LISTEN=true // Lắng nghe tin nhắn của chính mình, Webhook sẽ nhận sự kiện có isSelf=true kèm với isAPI=true/false.
+ADMIN_USERNAME=admin // Tên đăng nhập trang chủ.
+ADMIN_PASSWORD=admin // Mật khẩu đăng nhập trang chủ.
+X_API_KEY=your-secret-api-key // Header x-api-key để xác thực các Request tới API.
+SELF_LISTEN=true // Lắng nghe tin nhắn của chính mình, Webhook sẽ nhận sự kiện có isSelf=true kèm với isAPI=true/false.
 ```
 
 -----
