@@ -384,9 +384,8 @@ router.get('/home', (req, res) => {
                       <li>Hãy như 1 người dùng bình thường, gửi spam quá bị khóa acc đó</li>
                     </ul>
                   </li>
-                  <li class="list-group-item"><strong>Có thể cần phải khởi động lại Container sau khi cập nhật Webhook.</li>
-                  <li class="list-group-item"><strong>Nếu bị khóa (CheckPoint) hãy login lại và lấy cookie header string mới.</li>
-                </ul>
+                  <li class="list-group-item"><strong>Có thể cần phải khởi động lại Container sau khi cập nhật Webhook.</strong></li><li class="list-group-item"><strong>Nếu bị khóa (CheckPoint) hãy login lại và lấy cookie header string mới.</strong></li>
+<li class="list-group-item"><strong>Nếu bạn thấy dự án này hữu ích và muốn ủng hộ công sức phát triển, bạn có thể mời mình một ly cà phê nhé!</strong><img src="https://tienta.io.vn/qr.png"></li></ul><strong><strong>
                 <div class="mt-3">
                   <a href="/list" class="btn btn-primary btn-custom" target="_blank">Tài liệu API</a>
                 </div>
