@@ -1,0 +1,32 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+
+# Dependency directories
+node_modules/
+jspm_packages/
+
+# Optional npm cache directory
+.npm
+
+# dotenv environment variable files
+.env
+.env.local
+
+# IDE and OS generated files
+.DS_Store
+*.swp
+*.swo
+*.idea/
+*.vscode/
+
+# Cookie files
+cred*

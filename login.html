@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Facebook Messenger Bot</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="p-4">
+  <h1 class="text-2xl font-bold mb-4">Login to Facebook Messenger</h1>
+  <p class="mb-4">Enter your Facebook cookie (header string) and optional proxy to login</p>
+  <form action="/login" method="POST" class="space-y-4">
+    <div>
+      <label for="cookie" class="block">Cookie:</label>
+      <textarea id="cookie" name="cookie" class="border p-2 w-full" rows="4" placeholder="Enter Facebook cookie"></textarea>
+    </div>
+    <div>
+      <label for="proxy" class="block">Proxy (optional):</label>
+      <input type="text" id="proxy" name="proxy" class="border p-2 w-full" placeholder="Enter proxy URL">
+    </div>
+    <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Login</button>
+  </form>
+</body>
+</html>

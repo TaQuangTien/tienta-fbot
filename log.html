@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Facebook Messenger Bot - Logs</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="p-4">
+  <h1 class="text-2xl font-bold mb-4">Logs</h1>
+  <pre class="bg-gray-100 p-4 overflow-auto max-h-96" id="log-content"></pre>
+  <form action="/clearLogs" method="POST" class="mt-4">
+    <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded">Clear Logs</button>
+  </form>
+  <script>
+    // WebSocket for real-time log updates
+    const ws = new WebSocket('ws://' + window.location.host);
+    ws.onmessage = function(event) {
+      if (event.data === 'login_success' || event.data === 'login_failed') {
+        window.location.reload();
+      }
+    };
+    // Fetch initial logs
+    fetch('/home#logs').then(res => res.text()).then(html => {
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(html, 'text/html');
+      const logContent = doc.querySelector('#logs pre').textContent;
+      document.getElementById('log-content').textContent = logContent;
+    });
+  </script>
+</body>
+</html>

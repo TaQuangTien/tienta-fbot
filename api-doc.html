@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Facebook Messenger Bot - Tài liệu API</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body { background-color: #f8f9fa; }
+    .container { margin-top: 20px; }
+    .card { margin-bottom: 20px; }
+    h1, h2, h3 { color: #333; }
+    pre { background-color: #f4f4f4; padding: 15px; border-radius: 5px; font-size: 0.9em; }
+    code { font-family: Consolas, monospace; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 class="mb-4 text-center">Facebook Messenger Bot - Tài liệu API</h1>
+    <div class="card">
+      <div class="card-header">
+        <h5 class="card-title mb-0">Tổng quan API</h5>
+      </div>
+      <div class="card-body">
+        <p>Tất cả các API yêu cầu header <code>x-api-key</code> với giá trị khớp với <code>X_API_KEY</code> được cấu hình trong hệ thống. Các API cho phép tương tác với Facebook Messenger, bao gồm lấy danh sách tài khoản, gửi tin nhắn, hình ảnh, và lấy thông tin người dùng hoặc cuộc trò chuyện.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <h5 class="card-title mb-0">API Reference</h5>
+      </div>
+      <div class="card-body">
+        <h3>GET /api/accounts</h3>
+        <p>Lấy danh sách các tài khoản Facebook đã đăng nhập.</p>
+        <p><strong>Headers:</strong></p>
+        <pre><code>x-api-key: your_api_key_here</code></pre>
+        <p><strong>Response:</strong></p>
+        <pre><code>
+{
+  "success": true,
+  "data": [
+    {
+      "ownId": "user_id_1",
+      "userId": "user_id_1"
+    },
+    ...
+  ]
+}
+        </code></pre>
+        <p><strong>Example:</strong></p>
+        <pre><code>
+curl -X GET http://localhost:3000/api/accounts \
+-H "x-api-key: your_api_key_here"
+        </code></pre>
+
+        <h3>POST /api/sendMessage</h3>
+        <p>Gửi tin nhắn văn bản đến một thread (cuộc trò chuyện).</p>
+        <p><strong>Headers:</strong></p>
+        <pre><code>
+x-api-key: your_api_key_here
+Content-Type: application/json
+        </code></pre>
+        <p><strong>Body:</strong></p>
+        <pre><code>
+{
+  "message": "Hello, this is a test message!",
+  "threadId": "thread_id_here",
+  "ownId": "user_id_here"
+}
+        </code></pre>
+        <p><strong>Response:</strong></p>
+        <pre><code>
+{
+  "success": true,
+  "data": {
+    "messageID": "message_id_here"
+  }
+}
+        </code></pre>
+        <p><strong>Example:</strong></p>
+        <pre><code>
+curl -X POST http://localhost:3000/api/sendMessage \
+-H "x-api-key: your_api_key_here" \
+-H "Content-Type: application/json" \
+-d '{"message":"Hello","threadId":"123456789","ownId":"987654321"}'
+        </code></pre>
+
+<h3>POST /api/sendImageToUser</h3>
+    <p>Gửi một hình ảnh đến một thread. Hình ảnh có thể được cung cấp qua đường dẫn file cục bộ (<code>imagePath</code>), URL (<code>imageUrl</code>), hoặc dữ liệu base64 (<code>base64Image</code>).</p>
+    <p><strong>Headers:</strong></p>
+    <pre><code>
+x-api-key: your_api_key_here
+Content-Type: application/json
+    </code></pre>
+    <p><strong>Body:</strong></p>
+    <pre><code>
+{
+  "imagePath": "/path/to/image.jpg", // Optional: Đường dẫn file cục bộ
+  "imageUrl": "https://example.com/image.jpg", // Optional: URL của hình ảnh
+  "base64Image": "data:image/jpeg;base64,/9j/4AAQSkZJRg...", // Optional: Dữ liệu hình ảnh base64
+  "threadId": "thread_id_here", // Bắt buộc: ID của thread
+  "ownId": "user_id_here" // Bắt buộc: ID của tài khoản gửi
+}
+    </code></pre>
+    <p><strong>Response:</strong></p>
+    <pre><code>
+{
+  "success": true,
+  "data": {
+    "messageID": "message_id_here"
+  }
+}
+    </code></pre>
+    <p><strong>Error Response:</strong></p>
+    <pre><code>
+{
+  "success": false,
+  "error": "Invalid data: imagePath, imageUrl, or base64Image and threadId, ownId are required"
+}
+    </code></pre>
+    <p><strong>Example:</strong></p>
+    <pre><code>
+curl -X POST http://localhost:3000/api/sendImageToUser \
+-H "x-api-key: your_api_key_here" \
+-H "Content-Type: application/json" \
+-d '{"base64Image":"data:image/jpeg;base64,/9j/4AAQSkZJRg...","threadId":"123456789","ownId":"987654321"}'
+    </code></pre>
+
+    <h3>POST /api/sendImagesToUser</h3>
+    <p>Gửi nhiều hình ảnh đến một thread. Hình ảnh có thể được cung cấp qua mảng đường dẫn file cục bộ (<code>imagePaths</code>), mảng URL (<code>imageUrls</code>), hoặc mảng dữ liệu base64 (<code>base64Images</code>).</p>
+    <p><strong>Headers:</strong></p>
+    <pre><code>
+x-api-key: your_api_key_here
+Content-Type: application/json
+    </code></pre>
+    <p><strong>Body:</strong></p>
+    <pre><code>
+{
+  "imagePaths": ["/path/to/image1.jpg", "/path/to/image2.jpg"], // Optional: Mảng đường dẫn file cục bộ
+  "imageUrls": ["https://example.com/image1.jpg", "https://example.com/image2.jpg"], // Optional: Mảng URL của hình ảnh
+  "base64Images": ["data:image/jpeg;base64,/9j/4AAQSkZJRg...", "data:image/jpeg;base64,/9j/4AAQSkZJRg..."], // Optional: Mảng dữ liệu hình ảnh base64
+  "threadId": "thread_id_here", // Bắt buộc: ID của thread
+  "ownId": "user_id_here" // Bắt buộc: ID của tài khoản gửi
+}
+    </code></pre>
+    <p><strong>Response:</strong></p>
+    <pre><code>
+{
+  "success": true,
+  "data": {
+    "messageID": "message_id_here"
+  }
+}
+    </code></pre>
+    <p><strong>Error Response:</strong></p>
+    <pre><code>
+{
+  "success": false,
+  "error": "Invalid data: imagePaths, imageUrls, or base64Images must be a non-empty array and threadId, ownId are required"
+}
+    </code></pre>
+    <p><strong>Example:</strong></p>
+    <pre><code>
+curl -X POST http://localhost:3000/api/sendImagesToUser \
+-H "x-api-key: your_api_key_here" \
+-H "Content-Type: application/json" \
+-d '{"imageUrls":["https://example.com/image1.jpg","https://example.com/image2.jpg"],"threadId":"123456789","ownId":"987654321"}'
+    </code></pre>
+
+        <h3>GET /api/userInfo</h3>
+        <p>Lấy thông tin chi tiết về một người dùng dựa trên ID.</p>
+        <p><strong>Query Parameters:</strong></p>
+        <pre><code>
+userId: ID của người dùng (e.g., "123456789")
+ownId: ID của tài khoản Facebook đã đăng nhập
+        </code></pre>
+        <p><strong>Headers:</strong></p>
+        <pre><code>
+x-api-key: your_api_key_here
+        </code></pre>
+        <p><strong>Response:</strong></p>
+        <pre><code>
+{
+  "success": true,
+  "data": {
+    "123456789": {
+      "name": "Nguyen Van A",
+      "firstName": "Van A",
+      "gender": "MALE",
+      "type": "User",
+      "isFriend": true,
+      "thumbSrc": "https://example.com/profile.jpg",
+      "profileUrl": "https://facebook.com/nguyenvana"
+    }
+  }
+}
+        </code></pre>
+        <p><strong>Example:</strong></p>
+        <pre><code>
+curl -X GET "http://localhost:3000/api/userInfo?userId=123456789&ownId=987654321" \
+-H "x-api-key: your_api_key_here"
+        </code></pre>
+
+        <h3>GET /api/threadInfo</h3>
+        <p>Lấy thông tin về một cuộc trò chuyện (cá nhân hoặc nhóm) dựa trên threadID.</p>
+        <p><strong>Query Parameters:</strong></p>
+        <pre><code>
+threadId: ID của cuộc trò chuyện
+ownId: ID của tài khoản Facebook đã đăng nhập
+        </code></pre>
+        <p><strong>Headers:</strong></p>
+        <pre><code>
+x-api-key: your_api_key_here
+        </code></pre>
+        <p><strong>Response:</strong></p>
+        <pre><code>
+{
+  "success": true,
+  "data": {
+    "threadID": "123456789",
+    "threadName": "Nhóm chat",
+    "isGroup": true,
+    "participantIDs": ["123456789", "0987654321"],
+    "messageCount": 150
+  }
+}
+        </code></pre>
+        <p><strong>Example:</strong></p>
+        <pre><code>
+curl -X GET "http://localhost:3000/api/threadInfo?threadId=123456789&ownId=987654321" \
+-H "x-api-key: your_api_key_here"
+        </code></pre>
+
+        <h3>Webhook</h3>
+        <p>Bot gửi các sự kiện tin nhắn đến các URL được cấu hình trong <code>fb_data/webhook-config.json</code>. Cấu hình hiện tại:</p>
+        <pre><code>
+{
+  "messageWebhookUrl": "https://example.com/webhook/message",
+  "eventWebhookUrl": "https://example.com/webhook/event"
+}
+        </code></pre>
+        <p>Các sự kiện tin nhắn được gửi dưới dạng JSON với các trường như <code>senderID</code>, <code>threadID</code>, <code>body</code>, <code>AccountID</code>, <code>isAPI</code>.</p>
+
+        <h3>Export/Import</h3>
+        <p>Quản lý dữ liệu tài khoản và cấu hình:</p>
+        <ul>
+          <li><strong>Export Cookies</strong>: Tải xuống file cookie từ tab Export/Import.</li>
+          <li><strong>Export Webhook Config</strong>: Tải xuống <code>webhook-config.json</code>.</li>
+          <li><strong>Import Cookies</strong>: Tải lên file JSON chứa cookie để đăng nhập.</li>
+        </ul>
+
+        <h3>Lưu ý</h3>
+        <ul>
+          <li>Đảm bảo cung cấp đúng <code>x-api-key</code> trong header của mỗi request.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
