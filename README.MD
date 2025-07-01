@@ -56,9 +56,7 @@ docker run --restart=on-failure -d --name tienta-fbot -p 3000:3000 -e ADMIN_USER
 
 Nếu bạn thấy dự án này hữu ích và muốn ủng hộ công sức phát triển, bạn có thể mời mình một ly cà phê nhé\!
 
-\<p align="center"\>
-\<img src="qr.png" alt="Mã QR ủng hộ" width="200"/\>
-\</p\>
+![Alt text](qr.png)
 
 Sự ủng hộ của bạn là động lực rất lớn để mình tiếp tục phát triển và cải thiện dự án\!
 
