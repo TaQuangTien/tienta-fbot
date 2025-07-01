@@ -327,9 +327,6 @@ router.get('/home', (req, res) => {
             <button class="nav-link" id="webhook-tab" data-bs-toggle="tab" data-bs-target="#webhook" type="button" role="tab">Webhook</button>
           </li>
           <li class="nav-item" role="presentation">
-            <button class="nav-link" id="export-import-tab" data-bs-toggle="tab" data-bs-target="#export-import" type="button" role="tab">Export/Import</button>
-          </li>
-          <li class="nav-item" role="presentation">
             <button class="nav-link" id="guides-tab" data-bs-toggle="tab" data-bs-target="#guides" type="button" role="tab">Hướng dẫn</button>
           </li>
           <li class="nav-item">
