@@ -317,7 +317,7 @@ router.get('/home', (req, res) => {
     </head>
     <body>
       <div class="container mt-4">
-        <h1 class="mb-4 text-center">Facebook Bot - Trang Quản Lý</h1>        
+        <h1 class="mb-4 text-center">TienTa FB Bot - Trang Quản Lý</h1>        
         <!-- Tabs -->
         <ul class="nav nav-tabs mb-4" id="mainTab" role="tablist">
           <li class="nav-item" role="presentation">
@@ -377,20 +377,18 @@ router.get('/home', (req, res) => {
           <div class="tab-pane fade" id="guides" role="tabpanel">
             <div class="card">
               <div class="card-header">
-                <h5 class="card-title mb-0">Hướng dẫn giới hạn Facebook Messenger</h5>
+                <h5 class="card-title mb-0">Lưu ý</h5>
               </div>
               <div class="card-body">
                 <ul class="list-group">
-                  <li class="list-group-item"><strong>Thời gian nghỉ</strong> giữa 2 lần gửi tin nhắn: <em>60 - 120 giây</em></li>
-                  <li class="list-group-item"><strong>Giới hạn gửi tin nhắn/ngày</strong>:
+                  <li class="list-group-item"><strong>Chỉ nên dùng cho tài khoản phụ</strong></li>
+                  <li class="list-group-item"><strong>Giới hạn tần suất gửi tin nhắn</strong>:
                     <ul>
-                      <li>Tài khoản lâu năm (>1 năm, chưa bị hạn chế): Bắt đầu <strong>50</strong>, tăng dần +20 mỗi 3 ngày, tối đa 200.</li>
-                      <li>Tài khoản mới: <strong>20 - 50</strong> tin nhắn/ngày.</li>
+                      <li>Hãy như 1 người dùng bình thường, gửi spam quá bị khóa acc đó</li>
                     </ul>
                   </li>
-                  <li class="list-group-item"><strong>Giới hạn gửi tin nhắn cá nhân</strong>: Chỉ gửi được nếu người nhận cho phép (bạn bè hoặc cài đặt quyền riêng tư mở).</li>
-                  <li class="list-group-item"><strong>Kết bạn</strong>: Không vượt quá <strong>50 người/ngày</strong> (tách riêng nếu gửi tin nhắn nhiều).</li>
-                  <li class="list-group-item"><strong>Lưu ý</strong>: Thay đổi cookie thường xuyên để giảm nguy cơ bị khóa tài khoản.</li>
+                  <li class="list-group-item"><strong>Có thể cần phải khởi động lại Container sau khi cập nhật Webhook.</li>
+                  <li class="list-group-item"><strong>Nếu bị khóa (CheckPoint) hãy login lại và lấy cookie header string mới.</li>
                 </ul>
                 <div class="mt-3">
                   <a href="/list" class="btn btn-primary btn-custom" target="_blank">Tài liệu API</a>
