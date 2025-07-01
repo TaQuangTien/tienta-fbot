@@ -5,7 +5,8 @@ Là một thư viện cung cấp các API (unofficial) hỗ trợ bạn xây d�
 
 Lưu ý:
 1- Việc sử dụng thư viện này đồng nghĩa với việc bạn đang làm trái với chính sách của Facebook và nó có thể khiến cho tài khoản của bạn bị vô hiệu hóa. Chúng tôi sẽ không chịu trách nhiệm nếu điều đó xảy ra, vậy nên hãy cân nhắc trước khi sử dụng.
-2- Đăng nhập nhiều lần
+2- Đăng nhập nhiều lần có thể dẫn đến tài khoản bị khóa tạm thời.
+3- Không hỗ trợ các cuộc trò chuyện cá nhân có mã hóa đầu cuối.
 ```
 
 A- CÀI ĐẶT
